@@ -5,6 +5,11 @@
     background: #1b2430;
     padding: 20px 80px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    /* position: fixed;
+    z-index: 10; */
+    width: 100vw;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
 }
 
 #navBar {
@@ -47,11 +52,21 @@
 #mobile {
     display: none;
     color: #fff;
-    align-items: center;
+    align-items: start;
 }
 
+#searchBar {
+    height: 15px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
 
 @media screen and (max-width: 769px) {
+    #navContainer {
+        justify-content: end;
+    }
+
     #navBar {
         display: flex;
         flex-direction: column;
@@ -68,8 +83,10 @@
         transition: 0.3s ease-in-out;
     }
 
-    #navBar.active {
+
+    #navBar.navBarOpen {
         right: 0px;
+        z-index: 10;
     }
 
     #navBar li {
@@ -77,10 +94,10 @@
     }
 
     #mobile {
-        display: block;
+        display: flex;
     }
 
-    #mobile i {
+    #mobile {
         font-size: 24px;
         cursor: pointer;
     }

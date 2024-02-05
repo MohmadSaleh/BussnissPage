@@ -12,18 +12,21 @@ const SearchBar = () => {
     }
 
     return (
-        <header>
-            <form onSubmit={handleSubmit}>
-                <input
-                    className="search__input"
-                    type="text"
-                    onChange={handleSearchChange}
-                />
-                <button className="search__button">
-                    {/*   <FontAwesomeIcon icon={faMagnifyingGlass} /> */}
-                </button>
-            </form>
-        </header>
+
+        <form onSubmit={handleSubmit}
+            sx={{ width: "200px", height: "70px", padding: "10px", borderRadius: "10px", border: "1px solid #ccc" }}>
+            <input
+                sx={{ width: "200px", height: "70px", padding: "10px", borderRadius: "10px", border: "1px solid #ccc" }}
+                /* size={25}
+                height={50} */
+                name="search"
+                placeholder="Search"
+                className="search__input"
+                type="text"
+                onChange={handleSearchChange}
+            />
+        </form>
+
     )
 }
 export default SearchBar

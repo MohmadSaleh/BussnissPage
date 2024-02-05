@@ -13,7 +13,7 @@ const NavLinkComponent = ({ to, children }) => {
               fontSize={20}
               fontWeight={600}
               sx={{
-                p: 2,
+                p: 2, sm: { display: 'block' },
                 transition: '0.3s ease-in-out',
               }}
               variant="h6"

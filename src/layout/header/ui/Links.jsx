@@ -13,7 +13,7 @@ const Links = () => {
   const { login } = useContext(LoginContext);
   const loggedIn = login;
   return (
-    <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+    <Box sx={{ flexGrow: 1, display: { xs: "block", md: "flex" } }}>
       {alwaysLinks.map((myItem, index) => (
         <NavLinkComponent to={myItem.to} key={"linksnav" + index}>
           {myItem.children}
