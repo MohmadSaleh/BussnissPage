@@ -14,6 +14,9 @@ import ModeIcon from "@mui/icons-material/Mode";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PropTypes from "prop-types";
+import { useState } from "react";
+import "./componetsCss/popupstyle.css";
+import Map from "./mapComponent";
 /**
  * title -> title
  * subtitle -> subheader
@@ -36,8 +39,26 @@ const CardComponent = ({
   const handleEditClick = () => {
     onEdit(id);
   };
+
+
+
+
+  const [popup, setPopup] = useState(false);
+
+  const handleCardClick = () => {
+    setPopup(!popup);
+  };
+
+  if (popup) {
+    document.body.classList.add('active-popup')
+  } else {
+    document.body.classList.remove('active-popup')
+  }
+
+
   return (
-    <Card square raised>
+    <Card square raised
+      onClick={handleCardClick}>
       <CardActionArea>
         <CardMedia
           component="img"
@@ -67,7 +88,7 @@ const CardComponent = ({
           </Typography>
           {cardNumber}
         </Typography>
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        {/*  <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box>
             <IconButton onClick={handleDeleteClick}>
               <DeleteIcon />
@@ -84,8 +105,55 @@ const CardComponent = ({
               <FavoriteIcon />
             </IconButton>
           </Box>
-        </Box>
+        </Box> */}
       </CardContent>
+      {popup && (
+        <div className="popup">
+          <div onClick={handleCardClick} className="overlay"></div>
+          <div className="popup-content">
+            <h2>Hello popup</h2>
+            <CardActionArea
+              sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+              <CardMedia
+                component="img"
+                image={img}
+                alt="business card image"
+                height={300}
+              />
+              <CardHeader title={title} subheader={subtitle} ></CardHeader>
+              <Map cityName={address.city} />
+            </CardActionArea>
+
+            <Divider></Divider>
+            <CardContent>
+              <Typography>
+                <Typography component="span" fontWeight={700}>
+                  Phone:
+                </Typography>
+                {phone}
+              </Typography>
+              <Typography>
+                <Typography component="span" fontWeight={700}>
+                  Address:
+                </Typography>
+                <Typography component="div" fontWeight={500}>
+                  City:{address.country}
+                </Typography>
+                <Typography component="div" fontWeight={500}>
+                  City:{address.city}
+                </Typography>
+                <Typography component="div" fontWeight={500} >
+                  Street:{address.street}
+                </Typography>
+              </Typography>
+
+            </CardContent>
+            <button className="close-popup" onClick={handleCardClick}>
+              CLOSE
+            </button>
+          </div>
+        </div>
+      )}
     </Card>
 
 
@@ -99,6 +167,7 @@ CardComponent.propTypes = {
   img: PropTypes.string,
   phone: PropTypes.string.isRequired,
   address: PropTypes.shape({
+    country: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     street: PropTypes.string.isRequired,
     houseNumber: PropTypes.number.isRequired,
@@ -112,52 +181,4 @@ CardComponent.defaultProps = {
 };
 
 export default CardComponent;
-/* 
-import React, { useState } from 'react';
-import './CardDisplay.css'; // Import your CSS file for styling
-
-const cardsData = [
-  { id: 1, title: 'Card 1', content: 'Content for Card 1' },
-  { id: 2, title: 'Card 2', content: 'Content for Card 2' },
-  { id: 3, title: 'Card 3', content: 'Content for Card 3' },
-  // Add more cards as needed
-];
-
-const CardDisplay = () => {
-  const [selectedCard, setSelectedCard] = useState(null);
-
-  const handleCardClick = (cardId) => {
-    setSelectedCard(cardId);
-  };
-
-  const closePopup = () => {
-    setSelectedCard(null);
-  };
-
-  return (
-    <div className="card-display">
-      {cardsData.map((card) => (
-        <div
-          key={card.id}
-          className={`card ${selectedCard === card.id ? 'selected' : ''}`}
-          onClick={() => handleCardClick(card.id)}
-        >
-          <h2>{card.title}</h2>
-          <p>{card.content}</p>
-        </div>
-      ))}
-
-      {selectedCard && (
-        <div className="popup">
-          <div className="popup-content">
-            <h2>{cardsData.find((card) => card.id === selectedCard).title}</h2>
-            <p>{cardsData.find((card) => card.id === selectedCard).content}</p>
-            <button onClick={closePopup}>Close</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
- */
 

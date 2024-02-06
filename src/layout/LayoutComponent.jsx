@@ -15,7 +15,7 @@ const LayoutComponent = ({ children }) => {
   const themes = tmc({
     "text.headerColor": "!gray",
     "text.headerActive": "*white",
-    favActive: "*#FB0000",
+    favActive: "#1b2430",
   });
 
   const darkMode = createTheme(themes.dark);
