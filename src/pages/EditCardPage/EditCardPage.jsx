@@ -160,16 +160,6 @@ const EditCardPage = () => {
       >
         Submit
       </Button>
-
-      <CardComponent
-        id={inputsValue._id}
-        title={inputsValue.title}
-        subtitle={inputsValue.subtitle}
-        img={inputsValue.url}
-        phone={inputsValue.phone}
-        address={inputsValue.city}
-        cardNumber={inputsValue.zip}
-      />
     </Box>
   );
 };

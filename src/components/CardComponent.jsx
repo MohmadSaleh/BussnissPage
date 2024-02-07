@@ -24,6 +24,7 @@ import Map from "./mapComponent";
 const CardComponent = ({
   title,
   subtitle,
+  description,
   img,
   phone,
   address,
@@ -31,6 +32,8 @@ const CardComponent = ({
   id,
   onDelete,
   onEdit,
+  onlike,
+  liked
 }) => {
   const handleDeleteClick = () => {
     console.log("Clicked on delete", id);
@@ -39,6 +42,9 @@ const CardComponent = ({
   const handleEditClick = () => {
     onEdit(id);
   };
+  const handleLikeClick = () => {
+    onlike(id);
+  }
 
 
 
@@ -58,37 +64,36 @@ const CardComponent = ({
 
   return (
     <Card square raised
-      onClick={handleCardClick}>
+      sx={{ 'height': '500px' }}>
       <CardActionArea>
         <CardMedia
           component="img"
           image={img}
           alt="american massle car"
           height={200}
+          onClick={handleCardClick}
         />
       </CardActionArea>
-      <CardHeader title={title} subheader={subtitle}></CardHeader>
+      <CardHeader title={title} subheader={subtitle} onClick={handleCardClick}></CardHeader>
       <Divider></Divider>
       <CardContent>
-        <Typography>
-          <Typography component="span" fontWeight={700}>
-            Phone:
+
+        <Typography
+          sx={{ 'height': '100px', 'overflow': 'hidden4' }}>
+          <Typography component="div" fontWeight={700}>
+            About this place:
           </Typography>
-          {phone}
+          {description}
         </Typography>
+
         <Typography>
           <Typography component="span" fontWeight={700}>
             Address:
           </Typography>
-          {address.city}
+          {address.city}-{address.street} street
         </Typography>
-        <Typography>
-          <Typography component="span" fontWeight={700}>
-            Card number:
-          </Typography>
-          {cardNumber}
-        </Typography>
-        {/*  <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+
+        {<Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <Box>
             <IconButton onClick={handleDeleteClick}>
               <DeleteIcon />
@@ -101,17 +106,16 @@ const CardComponent = ({
             <IconButton>
               <LocalPhoneIcon />
             </IconButton>
-            <IconButton>
-              <FavoriteIcon />
-            </IconButton>
+            <IconButton onClick={handleLikeClick} >
+              <FavoriteIcon color={liked ? "error" : "inherit"} />
+            </IconButton >
           </Box>
-        </Box> */}
+        </Box>}
       </CardContent>
       {popup && (
         <div className="popup">
           <div onClick={handleCardClick} className="overlay"></div>
           <div className="popup-content">
-            <h2>Hello popup</h2>
             <CardActionArea
               sx={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
               <CardMedia
@@ -164,6 +168,7 @@ const CardComponent = ({
 CardComponent.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
+  description: PropTypes.string.isRequired,
   img: PropTypes.string,
   phone: PropTypes.string.isRequired,
   address: PropTypes.shape({
@@ -182,3 +187,21 @@ CardComponent.defaultProps = {
 
 export default CardComponent;
 
+{/*  <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box>
+            <IconButton onClick={handleDeleteClick}>
+              <DeleteIcon />
+            </IconButton>
+            <IconButton onClick={handleEditClick}>
+              <ModeIcon />
+            </IconButton>
+          </Box>
+          <Box>
+            <IconButton>
+              <LocalPhoneIcon />
+            </IconButton>
+            <IconButton>
+              <FavoriteIcon />
+            </IconButton>
+          </Box>
+        </Box> */}

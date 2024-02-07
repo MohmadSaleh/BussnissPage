@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
+import Typography from '@mui/material/Typography'
 
 const Map = ({ cityName }) => {
     const mapRef = useRef(null);
@@ -24,15 +25,16 @@ const Map = ({ cityName }) => {
                     attribution: "© OpenStreetMap contributors",
                 }).addTo(map);
 
-                // Add a marker for the city
-                L.marker([lat, lng]).addTo(map).bindPopup(cityName);
+
 
                 return () => {
-                    // Cleanup when the component unmounts
                     map.remove();
                 };
             } catch (error) {
                 console.error("Error fetching coordinates:", error);
+                return () => {
+                    <Typography variant="h1" color="initial">Could not fint the place on the map</Typography>
+                }
             }
         };
 

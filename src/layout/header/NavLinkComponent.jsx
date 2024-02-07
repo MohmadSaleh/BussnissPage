@@ -26,18 +26,5 @@ const NavLinkComponent = ({ to, children }) => {
     </Fragment>
   );
 };
-{
-  /* <Link to={to}>
-      <Typography color="text.primary" sx={{ p: 2 }}>
-        {children}
-      </Typography>
 
-
-      text-decoration: none;
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: #fff;
-    transition: 0.3s ease-in-out;
-    </Link> */
-}
 export default NavLinkComponent;

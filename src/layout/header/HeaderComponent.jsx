@@ -3,8 +3,9 @@ import { Box, IconButton, Switch } from "@mui/material";
 import Links from "./ui/Links";
 import MenuIcon from '@mui/icons-material/Menu';
 import ClearIcon from '@mui/icons-material/Clear';
-import "./NavStyle.css"
 import SearchBar from "../../components/searchBarCopmponent";
+import ProfileButton from "./ui/porofileButtonComponent";
+import './headerStyleCss/NavStyle.css'
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   let [menuOpen, setMenuOpen] = useState(false);
@@ -24,6 +25,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           <li> <SearchBar id="searchBar" /></li>
           <Links id="links" />
           <li> <Switch checked={isDarkTheme} onChange={handleThemeChange} /></li>
+          <li><ProfileButton /></li>
 
         </ul>
         <IconButton id="mobile"

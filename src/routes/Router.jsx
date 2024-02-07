@@ -13,7 +13,7 @@ import SandboxPage from "../sandbox/pages/SandboxPage";
 import LifeCycleHooksPage from "../sandbox/pages/LifeCycleHooksPage";
 import MemoPage from "../sandbox/pages/MemoPage";
 import ContextPage from "../sandbox/pages/ContextPage";
-import ProfilePage from "../pages/ProfilePage";
+import ProfilePage from "../pages/ProfilePageFile/ProfilePage";
 import AuthGuard from "../guard/AuthGuard";
 import BizGuard from "../guard/BizGuard";
 import CreatCardPage from "../pages/CreatCardPage/CreatCardPage";
